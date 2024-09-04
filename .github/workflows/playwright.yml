@@ -1,4 +1,4 @@
-iname: Playwright Tests
+name: Playwright Tests
 
 on:
   push:
