@@ -1,13 +1,16 @@
-name: Playwright Tests
+iname: Playwright Tests
+
 on:
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -19,7 +22,8 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
-    - name: allure generate --single-file --clean ./allure-results -o ./allure-report
+    - name: Generate Allure Report
+      run: allure generate --single-file --clean ./allure-results -o ./allure-report
     - uses: actions/upload-artifact@v4
       if: always()
       with:
